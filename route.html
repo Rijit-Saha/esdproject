@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Revo Bikes - Route</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ACC8E5;
+      color: #112A46;
+      margin: 0;
+    }
+    header {
+      background: #ACC8E5;
+      padding: 15px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav img {
+      height: 40px;
+    }
+    .brand h1 {
+      font-family: 'Montserrat', sans-serif;
+      color: #0D3B66;
+      font-size: 1.8rem;
+      margin-bottom: 2px;
+    }
+    .brand .tagline {
+      font-size: 0.9rem;
+      color: #2B4A67;
+      font-style: italic;
+      font-family: 'Montserrat', sans-serif;
+    }
+    nav a {
+      color: #112A46;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #0D3B66;
+    }
+    .route-section {
+      background: #F5F9FC;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: 40px auto;
+    }
+    h2 {
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      color: #0D3B66;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px;
+    }
+    select, button {
+      padding: 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <img src="logo.webp" alt="Revo Logo">
+          <div>
+            <h1>REVO BIKES</h1>
+            <p class="tagline">Bikes for revolution</p>
+          </div>
+        </div>
+        <div>
+          <a href="index.html">Home</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="route.html">Route</a>
+          <a href="safety.html">User Details</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="route-section">
+    <h2>Select Route</h2>
+    <label for="start">Start Location:</label>
+    <select id="start">
+      <option value="Howrah Station, Kolkata">Howrah Station</option>
+      <option value="Esplanade, Kolkata">Esplanade</option>
+      <option value="Park Street, Kolkata">Park Street</option>
+    </select>
+
+    <label for="end">Destination:</label>
+    <select id="end">
+      <option value="Salt Lake, Kolkata">Salt Lake</option>
+      <option value="College Street, Kolkata">College Street</option>
+      <option value="Jadavpur University, Kolkata">Jadavpur University</option>
+    </select>
+
+    <button onclick="showMap()">Show Route</button>
+
+    <div style="margin-top: 20px;">
+      <iframe id="mapFrame" src="https://maps.google.com/maps?q=Kolkata&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function showMap() {
+      const start = document.getElementById('start').value;
+      const end = document.getElementById('end').value;
+      const mapFrame = document.getElementById('mapFrame');
+      const src = `https://www.google.com/maps/embed/v1/directions?key=YOUR_API_KEY&origin=${encodeURIComponent(start)}&destination=${encodeURIComponent(end)}&mode=bicycling`;
+      mapFrame.src = src;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Revo Bikes</title>
+  <link rel="icon" href="logo.webp" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ACC8E5;
+      color: #112A46;
+    }
+
+    header {
+      background: #8DBBE0;
+      color: #112A46;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav img {
+      height: 40px;
+    }
+
+    .brand h1 {
+      font-family: 'Montserrat', sans-serif;
+      color: #0D3B66;
+      font-size: 1.8rem;
+      margin-bottom: 2px;
+    }
+
+    .brand .tagline {
+      font-size: 0.9rem;
+      color: #2B4A67;
+      font-style: italic;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    nav a {
+      color: #112A46;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #0d3b66;
+    }
+
+    .hero {
+      background: url("bg.avif") center center no-repeat;
+      background-size: cover;
+      height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      color: #112A46;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%; width: 100%;
+      background-color: rgba(255, 255, 255, 0.5); /* Light overlay */
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      max-width: 700px;
+      animation: fadeInDown 1.2s ease-in-out;
+      color: #112A46;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: #112A46;
+    }
+
+    .pricing, .reviews {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: #ffffff;
+      color: #112A46;
+      padding: 25px;
+      border-radius: 15px;
+      width: 280px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card h3 {
+      color: #112A46;
+    }
+
+    .card p {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card ul li {
+      padding: 5px 0;
+    }
+
+    .stars {
+      color: gold;
+      font-size: 1.1rem;
+    }
+
+    .contact p {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .about {
+      background: #8DBBE0;
+      color: #112A46;
+      text-align: center;
+      padding: 60px 20px;
+      border-top-left-radius: 60px;
+      border-top-right-radius: 60px;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+        padding: 0 10px;
+      }
+
+      .card {
+        width: 90%;
+      }
+    }
+    .logo-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <img src="logo.webp" alt="Revo Logo" class="logo-img">
+          <div>
+            <h1>REVO BIKES</h1>
+            <p class="tagline">Bikes for revolution</p>
+          </div>
+        </div>
+        <div>
+    <a href="index.html">Home</a>
+    <a href="route.html">Route</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="safety.html">User Details</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+   </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Eco Rides. Smart City. Revo Style.</h1>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <h2>Pricing Plans</h2>
+    <div class="pricing container">
+      <div class="card">
+        <a href="hourly.html" style="text-decoration: none; color: inherit;">
+  <h3>Hourly Booking</h3>
+</a>
+        <p>₹20/hour</p>
+        <ul>
+          <li>Quick short trips</li>
+          <li>App-based unlock</li>
+          <li>No commitment</li>
+        </ul>
+      </div>
+      <div class="card">
+        <a href="daily.html" style="text-decoration: none; color: inherit;">
+  <h3>Daily Pass</h3>
+</a>
+
+        <p>₹120/day</p>
+        <ul>
+          <li>Unlimited rides</li>
+          <li>24h valid</li>
+          <li>Auto-dock access</li>
+        </ul>
+      </div>
+      <div class="card">
+        <a href="monthly.html" style="text-decoration: none; color: inherit;">
+  <h3>Monthly Subscription</h3>
+</a>
+
+        <p>₹799/month</p>
+        <ul>
+          <li>Unlimited rides</li>
+          <li>Priority support</li>
+          <li>Dock anywhere</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <h2>What Users Say</h2>
+    <div class="reviews container">
+      <div class="card">
+        <h3>Amit Verma</h3>
+        <div class="stars">★★★★★</div>
+        <p>"Amazing service, perfect for college travel!"</p>
+      </div>
+      <div class="card">
+        <h3>Sneha Roy</h3>
+        <div class="stars">★★★★☆</div>
+        <p>"Affordable and eco-conscious, love it."</p>
+      </div>
+      <div class="card">
+        <h3>Ravi Kumar</h3>
+        <div class="stars">★★★★★</div>
+        <p>"Seamless app integration and clean bikes!"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <p>📞 +91 8336812920</p>
+    <p>📧 revobikes@gmail.com</p>
+  </section>
+
+  <!-- ABOUT US -->
+  <section class="about" id="about">
+    <h2>About Revo Bikes</h2>
+    <p>
+      Revo Bikes is India's smart electric bike sharing platform focused on green mobility. With app-based hourly rentals, daily passes, and monthly subscriptions, we serve commuters, students, and tourists in a sustainable and affordable way.
+    </p>
+  </section>
+
+</body>
+</html>
