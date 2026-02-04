@@ -122,24 +122,16 @@
       border-radius: 12px;
       margin-top: 20px;
     }
-    .route-action {
-  text-align: center;
-  margin: 30px 0;
-}
+    #proceedScanBtn {
+    background: #1abc9c;
+    font-size: 16px;
+    }
 
-  #proceedScanBtn {
-  padding: 15px 30px;
-  font-size: 18px;
-  background-color: #1abc9c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
- }
+    #proceedScanBtn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
 
-  #proceedScanBtn:hover {
-  background-color: #16a085;
- }
   </style>
 </head>
 
@@ -188,6 +180,9 @@
 
   <div id="map"></div>
 </div>
+ <button id="proceedScanBtn" disabled>
+  Proceed to Bike Scan
+</button>
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -277,21 +272,24 @@
         .bindPopup("Destination");
 
       map.fitBounds(routeLayer.getBounds());
+      document.getElementById("proceedScanBtn").disabled = false;
+
     })
     .catch(err => {
       alert("Route error: " + err.message);
       console.error(err);
     });
   }
-</script>
-  <div class="route-action">
-  <button id="proceedScanBtn">Proceed to Bike Scan</button>
-</div>
-  <script>
-  document.getElementById("proceedScanBtn").addEventListener("click", function () {
-    window.location.href = "qrscanner.html";
+ document.addEventListener("DOMContentLoaded", () => {
+  const proceedBtn = document.getElementById("proceedScanBtn");
+
+  proceedBtn.addEventListener("click", () => {
+    window.location.href = "Scanner.html";
   });
+});
+ 
+
 </script>
+
 </body>
 </html>
-
