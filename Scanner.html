@@ -153,12 +153,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const detailsDiv = document.getElementById("details");
   const popup = document.getElementById("unlockPopup");
+
+  // ✅ Create ONE scanner instance
   const qr = new Html5Qrcode("reader");
 
-  function onScanSuccess(text) {
+  function onScanSuccess(decodedText) {
     qr.stop();
 
-    const lines = text.split("\n");
+    const lines = decodedText.split("\n");
+
     detailsDiv.innerHTML = `
       <p>Name: ${lines[0] || "-"}</p>
       <p>Destination: ${lines[1] || "-"}</p>
@@ -168,22 +171,26 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.style.display = "flex";
   }
 
- html5QrCode.start(
-  { facingMode: "environment" }, // 👈 forces rear camera
-  {
-    fps: 10,
-    qrbox: { width: 250, height: 250 }
-  },
-  onScanSuccess
-).catch(err => {
-  alert("Camera error: " + err);
+  // ✅ FORCE BACK CAMERA
+  qr.start(
+    { facingMode: "environment" },   // 👈 back camera
+    {
+      fps: 10,
+      qrbox: { width: 250, height: 250 }
+    },
+    onScanSuccess
+  ).catch(err => {
+    alert("Camera error: " + err);
+  });
+
 });
 
-
+// Popup close
 function closePopup() {
   document.getElementById("unlockPopup").style.display = "none";
 }
 </script>
+
 
 </body>
 </html>
