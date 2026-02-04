@@ -168,12 +168,17 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.style.display = "flex";
   }
 
-  Html5Qrcode.getCameras().then(devices => {
-    qr.start(devices[0].id, { fps: 10, qrbox: 250 }, onScanSuccess);
-  }).catch(() => {
-    alert("Camera permission denied");
-  });
+ html5QrCode.start(
+  { facingMode: "environment" }, // 👈 forces rear camera
+  {
+    fps: 10,
+    qrbox: { width: 250, height: 250 }
+  },
+  onScanSuccess
+).catch(err => {
+  alert("Camera error: " + err);
 });
+
 
 function closePopup() {
   document.getElementById("unlockPopup").style.display = "none";
