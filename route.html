@@ -5,6 +5,9 @@
   <title>Revo Bikes - Route</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
   <!-- Leaflet CSS -->
   <link
     rel="stylesheet"
@@ -23,6 +26,9 @@
       background: #ACC8E5;
       padding: 15px 0;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .container {
@@ -37,11 +43,39 @@
       align-items: center;
     }
 
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav img {
+      height: 40px;
+    }
+
+    .brand h1 {
+      font-family: 'Montserrat', sans-serif;
+      color: #0D3B66;
+      font-size: 1.8rem;
+      margin-bottom: 2px;
+    }
+
+    .brand .tagline {
+      font-size: 0.9rem;
+      color: #2B4A67;
+      font-style: italic;
+      font-family: 'Montserrat', sans-serif;
+    }
+
     nav a {
       margin-left: 20px;
       text-decoration: none;
       color: #112A46;
       font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #0D3B66;
     }
 
     .route-section {
@@ -54,6 +88,7 @@
 
     h2 {
       text-align: center;
+      font-family: 'Montserrat', sans-serif;
       color: #0D3B66;
     }
 
@@ -95,7 +130,13 @@
 <header>
   <div class="container">
     <nav>
-      <strong>REVO BIKES</strong>
+      <div class="brand">
+        <img src="logo.webp" alt="Revo Logo">
+        <div>
+          <h1>REVO BIKES</h1>
+          <p class="tagline">Bikes for revolution</p>
+        </div>
+      </div>
       <div>
         <a href="index.html">Home</a>
         <a href="pricing.html">Pricing</a>
@@ -134,10 +175,10 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-  /* 🔑 OPENROUTESERVICE API KEY */
+
   const ORS_API_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImU1NjBiMzM1ZWQzODQxNTZiNTcxNTYyMzkyMjk0NmE2IiwiaCI6Im11cm11cjY0In0=";
 
-  /* 📍 LOCATIONS (lon, lat) */
+
   const locations = {
     howrah: [88.3426, 22.5850],
     esplanade: [88.3510, 22.5656],
@@ -149,7 +190,7 @@
     newtown: [88.4804, 22.5754]
   };
 
-  /* 🗺️ MAP INIT */
+  
   const map = L.map("map").setView([22.5726, 88.3639], 12);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -158,25 +199,27 @@
 
   let routeLayer, startMarker, endMarker;
 
-  /* 🎯 CUSTOM ICONS */
+  
   const startIcon = L.icon({
-  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});
+   iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png",
+   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+   iconSize: [25, 41],
+   iconAnchor: [12, 41],
+   popupAnchor: [1, -34],
+   shadowSize: [41, 41]
+ });
 
-const endIcon = L.icon({
-  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});
-  /* 🚲 ROUTE FUNCTION */
+ const endIcon = L.icon({
+   iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+   iconSize: [25, 41],
+   iconAnchor: [12, 41],
+   popupAnchor: [1, -34],
+   shadowSize: [41, 41]
+ });
+
+
+  
   function calculateRoute() {
     const startKey = document.getElementById("start").value;
     const endKey = document.getElementById("end").value;
